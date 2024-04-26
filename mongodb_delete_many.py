@@ -1,5 +1,5 @@
 import pymongo as p
-client=p.MongoClient('mongodb+srv://sai_charan:sai2024@clusterone.fw2f1nq.mongodb.net/')
+client=p.MongoClient('mongodb://localhost:27017/')
 db=client['mydatabase']
 coll=db['coll']
 # parameter={"name":{"$regex":"^S"}}
