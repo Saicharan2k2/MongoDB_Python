@@ -1,5 +1,5 @@
 import pymongo
-instance=pymongo.MongoClient('mongodb+srv://sai_charan:sai2024@clusterone.fw2f1nq.mongodb.net/')
+instance=pymongo.MongoClient('mongodb://localhost:27017/')
 db=instance['mydatabase']
 list=instance.list_database_names
 # if "mydatabase" in list:
