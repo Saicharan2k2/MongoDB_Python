@@ -1,1 +1,0 @@
-mongodb+srv://sai_charan:sai2024@clusterone.fw2f1nq.mongodb.net/
