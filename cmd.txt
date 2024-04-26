@@ -1,0 +1,259 @@
+mongosh
+Current Mongosh Log ID: 6628ec87f950c11feb117b7a
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.4
+MongoNetworkError: connect ECONNREFUSED 127.0.0.1:27017
+
+C:\Users\saich>mongodb+srv://saicharan:sai2024@cluster0.vd3ou8k.mongodb.net/
+'mongodb+srv:' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\saich>mongosh "mongodb+srv://cluster0.vd3ou8k.mongodb.net/" --apiVersion 1 --username saicharan
+Enter password: *******
+Current Mongosh Log ID: 6628ec9c9e3a583a14117b7a
+Connecting to:          mongodb+srv://<credentials>@cluster0.vd3ou8k.mongodb.net/?appName=mongosh+2.2.4
+Using MongoDB:          7.0.8 (API Version 1)
+Using Mongosh:          2.2.4
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+Atlas atlas-3c6m05-shard-0 [primary] test> show dbs
+admin  288.00 KiB
+local   32.72 GiB
+Atlas atlas-3c6m05-shard-0 [primary] test> use sai
+switched to db sai
+Atlas atlas-3c6m05-shard-0 [primary] sai>
+ show dbs
+sai     72.00 KiB
+admin  288.00 KiB
+local   32.72 GiB
+Atlas atlas-3c6m05-shard-0 [primary] test> use sai;
+switched to db sai
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find()
+[
+  { _id: ObjectId('6628ef659e3a583a14117b7b'), name: 'sai', age: 21 },
+  {
+    _id: ObjectId('6628f52a9e3a583a14117b7c'),
+    color: 'yellow',
+    taste: 'sweet',
+    name: 'mango'
+  }
+]
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find({taste:"sweet"})
+[
+  {
+    _id: ObjectId('6628f52a9e3a583a14117b7c'),
+    color: 'yellow',
+    taste: 'sweet',
+    name: 'mango'
+  }
+]
+Atlas atlas-3c6m05-shard-0 [primary] sai>
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.insertMany([{model:"abc"},{name:"asdf"},{size:"23"},{height:"55"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6628fe6ce57327fa70117b7b'),
+    '1': ObjectId('6628fe6ce57327fa70117b7c'),
+    '2': ObjectId('6628fe6ce57327fa70117b7d'),
+    '3': ObjectId('6628fe6ce57327fa70117b7e')
+  }
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find()
+[
+  { _id: ObjectId('6628ef659e3a583a14117b7b'), name: 'sai', age: 21 },
+  {
+    _id: ObjectId('6628f52a9e3a583a14117b7c'),
+    color: 'yellow',
+    taste: 'sweet',
+    name: 'mango'
+  },
+  { _id: ObjectId('6628fe6ce57327fa70117b7b'), model: 'abc' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7c'), name: 'asdf' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7d'), size: '23' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7e'), height: '55' }
+]
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find(name);
+ReferenceError: name is not defined
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find('name');
+MongoInvalidArgumentError: Query filter must be a plain object or ObjectId
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.findOne();
+{ _id: ObjectId('6628ef659e3a583a14117b7b'), name: 'sai', age: 21 }
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.findOne(age:21);
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:19)
+
+> 1 | db.col1.findOne(age:21);
+    |                    ^
+  2 |
+
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.findOne(age:"21");
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:19)
+
+> 1 | db.col1.findOne(age:"21");
+    |                    ^
+  2 |
+
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.findOne(age,"21");
+ReferenceError: age is not defined
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find({"height":{$gt:"50"}})
+[ { _id: ObjectId('6628fe6ce57327fa70117b7e'), height: '55' } ]
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find({"height":{$lt:"50"}})
+
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find({"size":{$lt:"50"}})
+[ { _id: ObjectId('6628fe6ce57327fa70117b7d'), size: '23' } ]
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.insertOne({djd:"34"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('662902cde57327fa70117b7f')
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find({"djd":{$ge:"34"}})
+MongoServerError[BadValue]: unknown operator: $ge
+
+ show dbs
+sai     72.00 KiB
+admin  288.00 KiB
+local   32.72 GiB
+Atlas atlas-3c6m05-shard-0 [primary] test> use sai;
+switched to db sai
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find()
+[
+  { _id: ObjectId('6628ef659e3a583a14117b7b'), name: 'sai', age: 21 },
+  {
+    _id: ObjectId('6628f52a9e3a583a14117b7c'),
+    color: 'orange',
+    name: 'ripen mango'
+  },
+  { _id: ObjectId('6628fe6ce57327fa70117b7b'), model: 'abc' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7c'), name: 'abcd' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7d'), size: '23' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7e'), height: '55' },
+  { _id: ObjectId('662902cde57327fa70117b7f'), djd: '34' },
+  { _id: ObjectId('6629063ae57327fa70117b80'), age: '22' },
+  { _id: ObjectId('6629063ae57327fa70117b81'), age: '22' },
+  { _id: ObjectId('6629063ae57327fa70117b82'), age: '22' },
+  { _id: ObjectId('6629063ae57327fa70117b83'), age: '22' },
+  { _id: ObjectId('6629063ae57327fa70117b84'), age: '22' }
+]
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.deleteOne({age:"22"})
+{ acknowledged: true, deletedCount: 1 }
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.deleteMany({age:"22"})
+{ acknowledged: true, deletedCount: 4 }
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find()
+[
+  { _id: ObjectId('6628ef659e3a583a14117b7b'), name: 'sai', age: 21 },
+  {
+    _id: ObjectId('6628f52a9e3a583a14117b7c'),
+    color: 'orange',
+    name: 'ripen mango'
+  },
+  { _id: ObjectId('6628fe6ce57327fa70117b7b'), model: 'abc' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7c'), name: 'abcd' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7d'), size: '23' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7e'), height: '55' },
+  { _id: ObjectId('662902cde57327fa70117b7f'), djd: '34' }
+]
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.updateOne({name:'abcd'},{$set:{name:'qwer'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.insertMany([{age:'21'},{age:'23'},{age:'24'},{age:'56'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('6629349d0e0a748510117b7b'),
+    '1': ObjectId('6629349d0e0a748510117b7c'),
+    '2': ObjectId('6629349d0e0a748510117b7d'),
+    '3': ObjectId('6629349d0e0a748510117b7e')
+  }
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.updateOne({age:'23'},{$set:{age:'21'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.updateOne({age:'24'},{$set:{age:'21'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.updateOne({age:'56'},{$set:{age:'21'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.updateMany({age:'21'},{$set:{age:'45'}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 4,
+  modifiedCount: 4,
+  upsertedCount: 0
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find()
+[
+  { _id: ObjectId('6628ef659e3a583a14117b7b'), name: 'sai', age: 21 },
+  {
+    _id: ObjectId('6628f52a9e3a583a14117b7c'),
+    color: 'orange',
+    name: 'ripen mango'
+  },
+  { _id: ObjectId('6628fe6ce57327fa70117b7b'), model: 'abc' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7c'), name: 'qwer' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7d'), size: '23' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7e'), height: '55' },
+  { _id: ObjectId('662902cde57327fa70117b7f'), djd: '34' },
+  { _id: ObjectId('6629349d0e0a748510117b7b'), age: '45' },
+  { _id: ObjectId('6629349d0e0a748510117b7c'), age: '45' },
+  { _id: ObjectId('6629349d0e0a748510117b7d'), age: '45' },
+  { _id: ObjectId('6629349d0e0a748510117b7e'), age: '45' }
+]
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.deleteMany({age:'45'})
+{ acknowledged: true, deletedCount: 4 }
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.find()
+[
+  { _id: ObjectId('6628ef659e3a583a14117b7b'), name: 'sai', age: 21 },
+  {
+    _id: ObjectId('6628f52a9e3a583a14117b7c'),
+    color: 'orange',
+    name: 'ripen mango'
+  },
+  { _id: ObjectId('6628fe6ce57327fa70117b7b'), model: 'abc' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7c'), name: 'qwer' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7d'), size: '23' },
+  { _id: ObjectId('6628fe6ce57327fa70117b7e'), height: '55' },
+  { _id: ObjectId('662902cde57327fa70117b7f'), djd: '34' }
+]
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.replaceOne({model:'abc'},{model:'kcnwc'})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.remove(djd:'34')
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:18)
+
+> 1 | db.col1.remove(djd:'34')
+    |                   ^
+  2 |
+
+Atlas atlas-3c6m05-shard-0 [primary] sai> db.col1.remove({djd:'34'})
+DeprecationWarning: Collection.remove() is deprecated. Use deleteOne, deleteMany, findOneAndDelete, or bulkWrite.
+{ acknowledged: true, deletedCount: 1 }
+Atlas atlas-3c6m05-shard-0 [primary] sai>
