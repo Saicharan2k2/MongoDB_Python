@@ -8,7 +8,7 @@
 
 # import pymongo
 
-# myclient = pymongo.MongoClient('mongodb+srv://sai_charan:sai2024@clusterone.fw2f1nq.mongodb.net/')
+# myclient = pymongo.MongoClient('mongodb://localhost:27017/')
 # mydb = myclient['mydatabase']
 # mycol = mydb["customers"]
 
@@ -19,7 +19,7 @@
 # print(x)
 
 import pymongo as p
-myclient=p.MongoClient('mongodb+srv://sai_charan:sai2024@clusterone.fw2f1nq.mongodb.net/')
+myclient=p.MongoClient('mongodb://localhost:27017/')
 mydb=myclient['mydatabase']
 coll=mydb['collection1']
 data={"color":"yellow","taste":"sweet","name":"mango"}
